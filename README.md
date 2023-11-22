@@ -42,10 +42,20 @@ Finalmente: Disculpas por el spanglish, estamos realizando un refactor global pa
 
 ## Requisitos
 
+Este es un proyecto node, por lo tanto lo primero es instalar node, hay varias
+formas de hacerlo; recomendamos usar nvm, y por el momento usar 18.
+
 node
 
 ```
 https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04
+```
+
+o si usamos nvm:
+
+```
+nvm install 18
+nvm alias default 18
 ```
 
 postgresql
@@ -56,8 +66,11 @@ sudo apt install postgresql
 
 nx
 
+Simplifica bastante tener instalado globalmente nx, puede que para el momento en que estas instalando, se instale 16 por defecto, por el
+momento es necesario usar latest para instalar nx 16.
+
 ```
-sudo npm i -g nx
+npm i -g nx@latest
 ```
 
 ## Desarrollo
@@ -85,6 +98,11 @@ VITE_DB_NAME=b2b
 VITE_DB_USER=b2b
 VITE_DB_PASS=123456
 ```
+
+Actualmente para poder usar gmail se debe primero habilitar la 
+autenticación de dos pasos, y luego crear una aplicación en sección:
+
+Contraseñas de aplicaciones
 
 ## Base de datos
 
