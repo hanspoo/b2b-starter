@@ -8,10 +8,10 @@ declare global {
       NX_SMTP_USER: string;
       USAR_COD_CENCO: string;
       VIGENCIA_PERMISOS: number;
-      VITE_SMTP_PASS: string;
-      VITE_SMTP_PORT: string;
-      VITE_SMTP_SERVER: string;
-      VITE_SMTP_USER: string;
+      SMTP_PASS: string;
+      SMTP_PORT: string;
+      SMTP_SERVER: string;
+      SMTP_USER: string;
     }
   }
 }

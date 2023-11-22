@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 
 import { dataSource, Archivo } from "@starter-ws/db";
 
-const UPLOAD_FOLDER = process.env.VITE_UPLOAD_FOLDER || `uploads`;
+const UPLOAD_FOLDER = process.env.UPLOAD_FOLDER || `uploads`;
 
 const archivos = express.Router();
 archivos.get("/", async function (req: Request, res: Response) {

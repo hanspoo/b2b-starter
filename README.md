@@ -86,17 +86,17 @@ Crear archivo .env.local en raiz del proyecto:
 
 ```
 VITE_SERVER_URL=http://localhost:3333
-VITE_PORT=3333
-VITE_UPLOAD_FOLDER=/home/username/uploads
+PORT=3333
+UPLOAD_FOLDER=/home/username/uploads
 
-VITE_SMTP_USER=user@gmail.com
-VITE_SMTP_PASS=xxxxxxxxx
-; VITE_SMTP_SERVER=smtp.gmail.com
-; VITE_SMTP_PORT=587
+SMTP_USER=user@gmail.com
+SMTP_PASS=xxxxxxxxx
+; SMTP_SERVER=smtp.gmail.com
+; SMTP_PORT=587
 
-VITE_DB_NAME=b2b
-VITE_DB_USER=b2b
-VITE_DB_PASS=123456
+DB_NAME=b2b
+DB_USER=b2b
+DB_PASS=123456
 ```
 
 Actualmente para poder usar gmail se debe primero habilitar la 
@@ -106,7 +106,7 @@ Contraseñas de aplicaciones
 
 ## Base de datos
 
-El sistema utilizará las variables de entorno VITE_DB\* para la conexión a la base de datos.
+El sistema utilizará las variables de entorno DB\* para la conexión a la base de datos.
 Sólo en test usamos sqlite, en los otros ambientes usamos postgresql. Puede crear de cualquier
 forma la base de datos, tenemos este script para poder crear rápidamente la base de datos y credenciales:
 
@@ -153,9 +153,10 @@ node main.js
 Crear archivo .env.local en la raíz del proyecto con las variables, por ejemplo:
 
 ```
-VITE_DB_NAME=gargola
-VITE_DB_USER=gargola
-VITE_DB_PASS=depiedra
+DB_NAME=gargola
+DB_USER=gargola
+DB_PASS=depiedra
 ```
 
 El script bin/pg-create.sh hace esto mismo.
+
