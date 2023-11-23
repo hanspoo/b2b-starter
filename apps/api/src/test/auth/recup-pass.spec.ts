@@ -1,4 +1,4 @@
-import * as nodemailer from 'nodemailer';
+//import * as nodemailer from 'nodemailer';
 import {
   dataSource,
   inicializarSistema,
@@ -8,14 +8,14 @@ import request from 'supertest';
 import { app } from '../../app';
 import { randomEmail, randomCseg } from '@starter-ws/shared';
 
-const sendMailMock = jest.fn();
-jest.mock('nodemailer');
+// const sendMailMock = jest.fn();
+// jest.mock('nodemailer');
 
-nodemailer.createTransport.mockReturnValue({ sendMail: sendMailMock });
-beforeEach(() => {
-  sendMailMock.mockClear();
-  nodemailer.createTransport.mockClear();
-});
+// nodemailer.createTransport.mockReturnValue({ sendMail: sendMailMock });
+// beforeEach(() => {
+//   sendMailMock.mockClear();
+//   nodemailer.createTransport.mockClear();
+// });
 
 beforeAll(async () => {
   await inicializarSistema();
