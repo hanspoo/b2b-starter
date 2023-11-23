@@ -1,17 +1,16 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      NX_SMTP_SERVER: string;
+      HOST: string;
       NODE_ENV: 'development' | 'production' | 'test';
-      NX_SMTP_PASS: string;
-      NX_SMTP_PORT: string;
-      NX_SMTP_USER: string;
-      USAR_COD_CENCO: string;
-      VIGENCIA_PERMISOS: number;
+      PORT: string;
       SMTP_PASS: string;
       SMTP_PORT: string;
       SMTP_SERVER: string;
       SMTP_USER: string;
+      UPLOAD_FOLDER: string;
+      VIGENCIA_PERMISOS: string;
+      VITE_SERVER_URL: string;
     }
   }
 }
@@ -19,3 +18,6 @@ declare global {
 declare module 'nodemailer' {
   export const createTransport: any;
 }
+
+export {};
+
