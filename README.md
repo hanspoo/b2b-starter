@@ -160,3 +160,5 @@ npm run build
 cd dist/apps/api
 node main.js
 ```
+
+## Happy coding
