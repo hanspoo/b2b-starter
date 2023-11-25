@@ -1,9 +1,9 @@
 # b2b-starter
 
-Working skeleton of multi ornanizacion project with a relational database, ideal for a b2b. Modern technological stack.
+Working skeleton of multi organization project, ideal for a b2b with a modern technological stack.
 For simplicity we have not used more elaborate frameworks such as nextjs or nestjs, only React and Express.
 
-We have prepared a video to help you install:
+We have prepared a video to help you to install:
 
 https://www.youtube.com/watch?v=H3FVW_YogM8
 
@@ -22,21 +22,22 @@ https://www.youtube.com/watch?v=H3FVW_YogM8
 
 ## Basic apps
 
+- Login
+- Home Page
 - User registration token based
 - User explorer
 - Password recovery with email
 
 Note: No links in emails
 
-## Because ?
+## Why ?
 
-This project was born in the development of a logistics system that evolved into multi-company, multi-user, the type used to develop software as a service.
+Choose and assemble all the pieces to start your new rocket project is not an easy task, moreover today !!.
 
-We incorporate a good login, registration and password recovery process with good practices such as not sending links in emails and using tokens and not cookies. Therefore, we think it is a good contribution to the community to have a prototype project with which to begin development.
+This project is a working piece of the curated list ot technologies mentioned abobe. You just clone and begin
+to work with the features your client wants.
 
-There may be some vestigial things left from the original pallet system hanging around. We apologize. If this is the case, let us know so we can remove them or send us an MR.
-
-The main React app and the database are called starter, in the sense that it will help them make their projects very quickly.
+For free you have registration, login and password recovery process. Good practices such as not sending links in emails and using tokens and not cookies.
 
 Finally: We have translated to English recently, so please forgive the spanglish somewhere. Please feed back on this or give us your merge request.
 
@@ -74,16 +75,17 @@ sudo apt install postgresql
 
 ### nx
 
-It makes it quite simple to have nx installed globally, it may be that by the time you are installing, 16 is installed by default, so
-At the moment it is necessary to use latest to install nx 16.
+Have nx globally installed simplify things:
 
 ```
 npm i -g nx@latest
 ```
 
-## Development
+At the time of this writing latest is 17.
 
-### clone the project and run tests
+## Configure development
+
+### Clone the project and run tests
 
 ```
 git clone https://github.com/hanspoo/b2b-starter
@@ -92,9 +94,9 @@ npm install
 npm run test
 ```
 
-### Database
+### Install and configure database
 
-Dev and prod uses postgresql, dev uses sqlite.
+Dev and prod uses postgresql.
 
 Create a database with this script:
 
@@ -123,9 +125,9 @@ DB_USER=b2b
 DB_PASS=123456
 ```
 
-The email is used by the registration and password recovery system.
+The SMTP\* variables are used by the registration and password recovery system.
 
-If you want to use Gmail, first enable two-step authentication, and then create
+Tip: If you want to use Gmail, first enable two-step authentication, and then create
 an app in section "App passwords", then use the app password here.
 
 ## Run backend
