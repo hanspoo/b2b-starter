@@ -1,7 +1,8 @@
 # b2b-starter
 
-Working skeleton of multi organization project, ideal for a b2b with a modern technological stack.
-For simplicity we have not used more elaborate frameworks such as nextjs or nestjs, only React and Express.
+Working skeleton of a database based project with modern stack.
+
+Just react and express: for simplicity we have not used more elaborate frameworks such as nextjs or nestjs, only React and Express.
 
 We have prepared a video to help you to install:
 
