@@ -7,7 +7,7 @@ import {
   ExecuteChangePassRequest,
 } from '@starter-ws/auth/api';
 import {
-  CrearUsuarioService,
+  CrearUserService,
   ExecuteChangePassService,
   FinderSolicitudesRegistro,
   LoginService,
@@ -85,7 +85,7 @@ auth.post(
     const response = await finder.execute(email, parseInt(cseg + ''));
     if (!response.success) return res.send(response);
 
-    const scu = new CrearUsuarioService();
+    const scu = new CrearUserService();
     const e = await scu.crearDesdeSolicitud(response.solicitud);
     if (e) return res.send(response);
     else {

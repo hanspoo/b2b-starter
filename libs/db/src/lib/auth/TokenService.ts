@@ -5,7 +5,7 @@ export class TokenService {
   async find(token: string): Promise<Token | null> {
     const t = await dataSource.getRepository(Token).findOne({
       where: { id: token },
-      relations: ['usuario', 'usuario.empresa'],
+      relations: ['user', 'user.organization'],
     });
     return t;
   }

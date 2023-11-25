@@ -14,11 +14,11 @@ import storage from 'redux-persist/lib/storage';
 import { Action, combineReducers } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
-import { usuariosSlice } from '../features/usuariosSlice';
+import { usersSlice } from '../features/usersSlice';
 
 const reducers = combineReducers({
   auth: authSlice.reducer,
-  usersState: usuariosSlice.reducer,
+  usersState: usersSlice.reducer,
 });
 
 const persistConfig = {

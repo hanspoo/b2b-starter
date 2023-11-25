@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Spin } from 'antd';
 import UsersList from '../users-list/users-list';
-import { Usuario } from '@starter-ws/db';
+import { User } from '@starter-ws/db';
 import { useHttpClient } from '../useHttpClient';
 
 /* eslint-disable-next-line */
@@ -12,13 +12,13 @@ export function UsersContainer(props: UsersContainerProps) {
   const httpClient = useHttpClient();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [usuarios, setUsuarios] = useState<Array<Usuario>>();
+  const [users, setUsers] = useState<Array<User>>();
 
   useEffect(() => {
     httpClient
-      .get('/api/usuarios')
+      .get('/api/users')
       .then((response) => {
-        setUsuarios(response.data);
+        setUsers(response.data);
         setLoading(false);
       })
       .catch((error) => { setError(error.message); setLoading(false); });
@@ -26,7 +26,7 @@ export function UsersContainer(props: UsersContainerProps) {
 
   if (loading) return <Spin />;
   if (error) return <p>{error}</p>;
-  if (!usuarios) return <p>Error interno</p>;
+  if (!users) return <p>Error interno</p>;
 
-  return <UsersList usuarios={usuarios} />;
+  return <UsersList users={users} />;
 }

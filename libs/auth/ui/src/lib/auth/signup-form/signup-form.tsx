@@ -27,7 +27,7 @@ export const SignupForm: React.FC<{
   if (view === View.LANDING) return <LandingRegistration />;
 
   const onFinish = (values: any) => {
-    const { empresa, nombre, email, password, repassword, identLegal } = values;
+    const { organization, name, email, password, repassword, identLegal } = values;
 
     if (repassword !== password) {
       console.log('Contraseñas y repetir deben ser iguales');
@@ -35,8 +35,8 @@ export const SignupForm: React.FC<{
     }
     setLoading(true);
     const data: SignupRequest = {
-      empresa,
-      nombre,
+      organization,
+      name,
       token: '',
       email,
       password,
@@ -77,7 +77,7 @@ export const SignupForm: React.FC<{
           <Title level={3}>Registrar</Title>
 
           <Title style={{ marginBottom: '1em' }} level={5}>
-            Datos de la empresa
+            Datos de la organization
           </Title>
 
           <Form.Item
@@ -87,18 +87,18 @@ export const SignupForm: React.FC<{
             <Input placeholder="RUT" />
           </Form.Item>
           <Form.Item
-            name="empresa"
+            name="organization"
             rules={[{ required: true, message: 'Requerido' }]}
           >
             <Input placeholder="Nombre" />
           </Form.Item>
 
           <Title style={{ marginBottom: '1em' }} level={5}>
-            Datos del usuario
+            Datos del user
           </Title>
 
           <Form.Item
-            name="nombre"
+            name="name"
             rules={[{ required: true, message: 'Requerido' }]}
           >
             <Input placeholder="Nombre Completo" />

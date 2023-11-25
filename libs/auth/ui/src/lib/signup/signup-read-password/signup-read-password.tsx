@@ -35,8 +35,8 @@ export function SignupReadPassword({
     setLoading(true);
 
     const data: SignupRequest = {
-      empresa: companyData.empresa,
-      nombre: userData.nombre,
+      organization: companyData.organization,
+      name: userData.name,
       email,
       token,
       password,
@@ -59,8 +59,8 @@ export function SignupReadPassword({
     console.log('Failed:', errorInfo);
   };
 
-  if (!companyData.empresa) {
-    return <p>Error interno: No hay datos de empresa</p>;
+  if (!companyData.organization) {
+    return <p>Error interno: No hay datos de organization</p>;
   }
   return (
     <Form

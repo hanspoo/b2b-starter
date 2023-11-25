@@ -9,10 +9,10 @@ export class SolicitudRegistro {
   identLegal: string;
 
   @Column()
-  empresa: string;
+  organization: string;
 
   @Column()
-  nombre: string;
+  name: string;
 
   @Column()
   email: string;

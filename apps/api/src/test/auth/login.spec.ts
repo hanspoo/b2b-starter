@@ -1,5 +1,5 @@
 import { LoginRequest } from '@starter-ws/auth/api';
-import { dataSource, Empresa, inicializarSistema } from '@starter-ws/db';
+import { dataSource, Organization, inicializarSistema } from '@starter-ws/db';
 import request = require('supertest');
 import { app } from '../../app';
 import { IsNull, Not } from 'typeorm';
@@ -7,15 +7,15 @@ import { IsNull, Not } from 'typeorm';
 beforeAll(async () => {
   await inicializarSistema();
   // const u = dataSource
-  //   .getRepository(Usuario)
+  //   .getRepository(User)
   //   .create({ email: 'info@welinux.cl', password: '123456' });
 
-  const empresa = await dataSource
-    .getRepository(Empresa)
+  const organization = await dataSource
+    .getRepository(Organization)
     .findOne({ where: { id: Not(IsNull()) } });
 
-  // empresa.usuarios = [u];
-  await dataSource.getRepository(Empresa).save(empresa);
+  // organization.users = [u];
+  await dataSource.getRepository(Organization).save(organization);
 });
 const credentials: LoginRequest = {
   email: 'admin@starter.com',

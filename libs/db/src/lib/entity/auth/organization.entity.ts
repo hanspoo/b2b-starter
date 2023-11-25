@@ -1,18 +1,18 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
-import { Usuario } from './usuario.entity';
+import { User } from './user.entity';
 
 @Entity()
-export class Empresa {
+export class Organization {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  nombre: string;
+  name: string;
 
   @Column({ nullable: true })
   identLegal?: string;
 
-  @OneToMany(() => Usuario, (u) => u.empresa, { cascade: true })
-  usuarios: Usuario[];
+  @OneToMany(() => User, (u) => u.organization, { cascade: true })
+  users: User[];
 }

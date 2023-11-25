@@ -1,17 +1,17 @@
 import { SignupService } from '../../lib/auth/SignupService';
-import { inicializarSistema } from '../../lib/inicializarSistema';
+import { inicializarSistema } from '../../lib/initSystem';
 import { randomBytes } from 'crypto';
 
-let empresa = 'Alfa Centauro';
-let nombre = 'Arnold';
+let organization = 'Alfa Centauro';
+let name = 'Arnold';
 let email = 'hanspoo@gmail.com';
 let password = '123456';
 let identLegal = '123456';
 
 beforeEach(() => {
   const rnd = randomBytes(6).toString('hex');
-  empresa = 'Alfa Centauro' + rnd;
-  nombre = 'Arnold' + rnd;
+  organization = 'Alfa Centauro' + rnd;
+  name = 'Arnold' + rnd;
   email = 'hanspoo@gmail.com';
   password = '123456';
   identLegal = identLegal + rnd;
@@ -24,8 +24,8 @@ describe('registra cliente', () => {
   describe('validaciones', () => {
     it('todos los datos validación ok', async () => {
       const service = new SignupService({
-        empresa,
-        nombre,
+        organization,
+        name,
         email,
         password,
         identLegal,
@@ -33,10 +33,10 @@ describe('registra cliente', () => {
       const [isOk, msg] = await service.validate();
       expect(isOk).toBe(true);
     });
-    it('si falta el nombre error', async () => {
+    it('si falta el name error', async () => {
       const service = new SignupService({
-        nombre: '',
-        empresa,
+        name: '',
+        organization,
         email,
         password,
         identLegal,
@@ -44,10 +44,10 @@ describe('registra cliente', () => {
       const [isOk, msg] = await service.validate();
       expect(isOk).toBe(false);
     });
-    it('si falta el empresa error', async () => {
+    it('si falta el organization error', async () => {
       const service = new SignupService({
-        nombre,
-        empresa: '',
+        name,
+        organization: '',
         email,
         password,
         identLegal,
@@ -57,8 +57,8 @@ describe('registra cliente', () => {
     });
     it('si falta el email error', async () => {
       const service = new SignupService({
-        nombre,
-        empresa,
+        name,
+        organization,
         email: '',
         password,
         identLegal,
@@ -68,8 +68,8 @@ describe('registra cliente', () => {
     });
     it('si falta la contraseña error', async () => {
       const service = new SignupService({
-        nombre,
-        empresa,
+        name,
+        organization,
         email,
         password: '',
         identLegal,
@@ -79,8 +79,8 @@ describe('registra cliente', () => {
     });
     it.skip('asigna codigo aleatorio numerico largo 6', async () => {
       const service = new SignupService({
-        nombre,
-        empresa,
+        name,
+        organization,
         email,
         password: '',
         identLegal,

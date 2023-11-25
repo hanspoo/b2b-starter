@@ -5,20 +5,20 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Usuario } from './usuario.entity';
+import { User } from './user.entity';
 
 @Entity()
 export class Token {
-  static fromUsuario(usuario: Usuario): Token {
+  static fromUser(user: User): Token {
     const t = new Token();
-    t.usuario = usuario;
+    t.user = user;
     return t;
   }
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Usuario, (u) => u.sesiones, { nullable: false })
-  usuario: Usuario;
+  @ManyToOne(() => User, (u) => u.sessions, { nullable: false })
+  user: User;
 
   @CreateDateColumn()
   creado: Date;

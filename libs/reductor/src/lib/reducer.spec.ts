@@ -1,4 +1,4 @@
-import { persistor } from '../lib/app/store';
+import { persistor } from './app/store';
 describe('reductor', () => {
   it('should work', () => {
     expect(persistor).toBeTruthy();

@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import { Alert, Button, Checkbox, Form, Input, Spin } from 'antd';
-import { Usuario } from '@starter-ws/db';
-import axios from 'axios';
+import { useState } from 'react';
+import { Alert, Button, Form, Input, Spin } from 'antd';
+import { User } from '@starter-ws/db';
 
 import { useDispatch } from 'react-redux';
 import { useHttpClient } from '../../useHttpClient';
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { actualizarUsuario } from '@starter-ws/reductor';
+import { actualizarUser } from '@starter-ws/reductor';
 
-type EditarUsuarioProps = {
-  usuario: Usuario;
+type EditUserProps = {
+  user: User;
   cancelar(): void;
 };
 
-export function EditarUsuario({ usuario, cancelar }: EditarUsuarioProps) {
+export function EditUser({ user, cancelar }: EditUserProps) {
   const dispatch = useDispatch();
   const httpClient = useHttpClient();
 
@@ -25,10 +24,10 @@ export function EditarUsuario({ usuario, cancelar }: EditarUsuarioProps) {
     setLoading(true);
 
     httpClient
-      .put(`/api/usuarios/${usuario.id}`, values)
+      .put(`/api/users/${user.id}`, values)
       .then((response) => {
         setOk(true);
-        dispatch(actualizarUsuario(response.data as Usuario));
+        dispatch(actualizarUser(response.data as User));
         setLoading(false);
       })
       .catch((error) => {
@@ -49,19 +48,19 @@ export function EditarUsuario({ usuario, cancelar }: EditarUsuarioProps) {
       <div>
         <span>
           <span>
-            <p>
+            <div>
               <Alert
-                message="Actualización de usuario"
+                message="Actualización de user"
                 description={
                   <div>
-                    <p>El usuario fue actualizado correctamente.</p>
-                    <Button onClick={cancelar}>Continuar</Button>
+                    <p>User updated.</p>
+                    <Button onClick={cancelar}>Continue</Button>
                   </div>
                 }
                 type="success"
                 showIcon
               ></Alert>
-            </p>
+            </div>
           </span>
         </span>
       </div>
@@ -70,23 +69,23 @@ export function EditarUsuario({ usuario, cancelar }: EditarUsuarioProps) {
   return (
     <Form
       layout="vertical"
-      name="editar-usuario"
+      name="editar-user"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
       initialValues={{
         remember: true,
-        nombre: usuario.nombre,
-        email: usuario.email,
+        name: user.name,
+        email: user.email,
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item
-        label="Nombre"
-        name="nombre"
-        rules={[{ required: true, message: 'Por favor ingrese su nombre!' }]}
+        label="Name"
+        name="name"
+        rules={[{ required: true, message: 'Por favor ingrese su name!' }]}
       >
         <Input />
       </Form.Item>
@@ -115,4 +114,4 @@ export function EditarUsuario({ usuario, cancelar }: EditarUsuarioProps) {
   );
 }
 
-export default EditarUsuario;
+export default EditUser;

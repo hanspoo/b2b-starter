@@ -1,19 +1,19 @@
 import { Descriptions } from 'antd';
-import { Usuario } from '@starter-ws/db';
+import { User } from '@starter-ws/db';
 
 const { Item } = Descriptions;
 
-type UsuarioDetailProps = {
-  usuario: Usuario
+type UserDetailProps = {
+  user: User
 }
 
 
-function UserDetail({ usuario }: UsuarioDetailProps) {
+function UserDetail({ user }: UserDetailProps) {
 
   return <Descriptions bordered column={1} >
-    <Item label="id">{usuario.id}</Item>
-    <Item label="nombre">{usuario.nombre}</Item>
-    <Item label="email">{usuario.email}</Item>
+    <Item label="id">{user.id}</Item>
+    <Item label="name">{user.name}</Item>
+    <Item label="email">{user.email}</Item>
   </Descriptions>
 
 }

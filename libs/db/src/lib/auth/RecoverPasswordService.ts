@@ -1,16 +1,16 @@
-import { dataSource } from "../data-source";
+import { dataSource } from '../data-source';
 import {
   cleanupEmail,
   isValidEmail,
   Mailer,
   NodeMailer,
-} from "@starter-ws/mail-utils";
+} from '@starter-ws/mail-utils';
 
-import { Usuario } from "../entity/auth/usuario.entity";
-import { SolicitudAutenticarEmail } from "../entity/auth/solicitud-autenticar-email.entity";
+import { User } from '../entity/auth/user.entity';
+import { SolicitudAutenticarEmail } from '../entity/auth/email-authentication-request.entity';
 
-import { RecoverPasswordServiceResult } from "./RecoverPasswordServiceResult";
-import { errMessage, genCodSeguridad } from "@starter-ws/shared";
+import { RecoverPasswordServiceResult } from './RecoverPasswordServiceResult';
+import { errMessage, genCodSeguridad } from '@starter-ws/shared';
 
 export class RecoverPasswordService {
   codigoSeguridad: any;
@@ -20,20 +20,20 @@ export class RecoverPasswordService {
   }
 
   async execute(): Promise<RecoverPasswordServiceResult> {
-    const repoUsr = dataSource.getRepository(Usuario);
+    const repoUsr = dataSource.getRepository(User);
     const repoSol = dataSource.getRepository(SolicitudAutenticarEmail);
 
     const email = cleanupEmail(this.email);
     if (!isValidEmail(this.email)) {
       return { success: false, msg: `RPA001: Email ${email} es inválido` };
     }
-    const usuario = await repoUsr.findOne({
+    const user = await repoUsr.findOne({
       where: { email: this.email.toLowerCase().trim() },
     });
-    if (!usuario)
+    if (!user)
       return {
         success: false,
-        msg: `RPA002: ${errMessage("RPA002")}`,
+        msg: `RPA002: ${errMessage('RPA002')}`,
       };
 
     const cseg = genCodSeguridad();
@@ -43,7 +43,7 @@ export class RecoverPasswordService {
     this.mailer.send({
       from: '"Hans Poo" <hanscpoo@welinux.cl>', // sender address
       to: this.email,
-      subject: "Recuperación de contraseña en starter",
+      subject: 'Recuperación de contraseña en starter',
       text: `
         Hola,
 
@@ -66,6 +66,6 @@ export class RecoverPasswordService {
         `,
     });
 
-    return { success: true, msg: errMessage("RPA001"), solicitud };
+    return { success: true, msg: errMessage('RPA001'), solicitud };
   }
 }

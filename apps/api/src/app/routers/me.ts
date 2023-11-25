@@ -1,16 +1,16 @@
 import { Me } from '@starter-ws/auth/api';
-import { Empresa, Usuario } from '@starter-ws/db';
+import { Organization, User } from '@starter-ws/db';
 import express, { Request, Response } from 'express';
 
 export const me = express.Router();
 
 me.get('/', async function (req: Request, res: Response<Me>) {
-  const u: Usuario = req['user'];
-  const e: Empresa = req['empresa'];
+  const u: User = req['user'];
+  const e: Organization = req['organization'];
   const me: Me = {
-    nombre: u.nombre,
+    name: u.name,
     email: u.email,
-    empresa: e.nombre,
+    organization: e.name,
   };
   res.send(me);
 });

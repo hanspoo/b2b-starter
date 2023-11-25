@@ -1,11 +1,11 @@
 // dado un email debe generar un registro de recuperación de contraseña y enviar un email
 
-import { Mailer, SendMailArgs } from "@starter-ws/mail-utils";
-import { RecoverPasswordService } from "../../lib/auth/RecoverPasswordService";
-import { inicializarSistema } from "../../lib/inicializarSistema";
-import { ValidarSolicitudAutenticarEmail } from "../../lib/auth/ValidarSolicitudAutenticarEmail";
-import { randomCseg, randomEmail } from "@starter-ws/shared";
-import { MotivoPermiso } from "../../lib/entity/auth/permiso-usar-email.entity";
+import { Mailer, SendMailArgs } from '@starter-ws/mail-utils';
+import { RecoverPasswordService } from '../../lib/auth/RecoverPasswordService';
+import { inicializarSistema } from '../../lib/initSystem';
+import { ValidarSolicitudAutenticarEmail } from '../../lib/auth/ValidarSolicitudAutenticarEmail';
+import { randomCseg, randomEmail } from '@starter-ws/shared';
+import { MotivoPermiso } from '../../lib/entity/auth/grant-use-email.entity';
 
 beforeAll(async () => {
   await inicializarSistema();
@@ -18,11 +18,11 @@ class MockMailer implements Mailer {
     this.params = params;
   }
 }
-const email = "admin@starter.com";
+const email = 'admin@starter.com';
 
-describe("recuperación de contraseña", () => {
-  describe("mailer", () => {
-    it("llama el mailer con parámetros", async () => {
+describe('recuperación de contraseña', () => {
+  describe('mailer', () => {
+    it('llama el mailer con parámetros', async () => {
       const s = new RecoverPasswordService(email);
       const mock = new MockMailer();
       s.mailer = mock;
@@ -31,17 +31,17 @@ describe("recuperación de contraseña", () => {
       expect(mock.params.to).toBe(email);
     });
   });
-  describe("solicitud", () => {
-    it("debe generar y devolver el registro de recuperacion", async () => {
-      const s = new RecoverPasswordService("admin@starter.com");
+  describe('solicitud', () => {
+    it('debe generar y devolver el registro de recuperacion', async () => {
+      const s = new RecoverPasswordService('admin@starter.com');
       const mock = new MockMailer();
       s.mailer = mock;
       const solicRecup = await s.execute();
 
       expect(solicRecup).toBeTruthy();
     });
-    it("debe establecer correctamente el correo de la solicitud", async () => {
-      const email = "admin@starter.com";
+    it('debe establecer correctamente el correo de la solicitud', async () => {
+      const email = 'admin@starter.com';
       const s = new RecoverPasswordService(email);
       const mock = new MockMailer();
       s.mailer = mock;
@@ -50,27 +50,27 @@ describe("recuperación de contraseña", () => {
       expect(solicRecup.solicitud?.email).toBe(email);
     });
 
-    it("email inválido, mensaje 01", async () => {
-      const s = new RecoverPasswordService("xxx");
+    it('email inválido, mensaje 01', async () => {
+      const s = new RecoverPasswordService('xxx');
       const mock = new MockMailer();
       s.mailer = mock;
       const solicRecup = await s.execute();
 
-      expect(solicRecup.msg).toContain("RPA001");
+      expect(solicRecup.msg).toContain('RPA001');
     });
-    it("si no existe email para el usuario enviar correo disuasivo", async () => {
+    it('si no existe email para el user enviar correo disuasivo', async () => {
       const email = randomEmail();
       const s = new RecoverPasswordService(email);
       const mock = new MockMailer();
       s.mailer = mock;
       const solicRecup = await s.execute();
 
-      expect(solicRecup.msg).toContain("RPA002");
+      expect(solicRecup.msg).toContain('RPA002');
     });
   });
-  describe("paso2 handler validar email y codigo", () => {
-    describe("valida que el código ingresado corresponda a solicitud para el email", () => {
-      it("con código inválido manda error 1", async () => {
+  describe('paso2 handler validar email y codigo', () => {
+    describe('valida que el código ingresado corresponda a solicitud para el email', () => {
+      it('con código inválido manda error 1', async () => {
         const service = new ValidarSolicitudAutenticarEmail();
         const response = await service.execute(
           randomEmail(),
@@ -79,7 +79,7 @@ describe("recuperación de contraseña", () => {
         );
         expect(response.success).toBe(false);
       });
-      it("con datos correctos responde success", async () => {
+      it('con datos correctos responde success', async () => {
         const recoverPassService = new RecoverPasswordService(email);
         const mock = new MockMailer();
         recoverPassService.mailer = mock;

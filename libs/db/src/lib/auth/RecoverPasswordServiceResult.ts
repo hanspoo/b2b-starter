@@ -1,4 +1,4 @@
-import { SolicitudAutenticarEmail } from "../entity/auth/solicitud-autenticar-email.entity";
+import { SolicitudAutenticarEmail } from '../entity/auth/email-authentication-request.entity';
 
 export type RecoverPasswordServiceResult = {
   success: boolean;

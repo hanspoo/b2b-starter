@@ -1,4 +1,4 @@
-import { SolicitudRegistro } from '../entity/auth/solicitud-registro.entity';
+import { SolicitudRegistro } from '../entity/auth/registration-request.entity';
 
 export type ActivationServiceResponse = {
   success?: boolean;

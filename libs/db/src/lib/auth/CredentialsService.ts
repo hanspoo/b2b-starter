@@ -1,18 +1,18 @@
 import { dataSource } from '../data-source';
-import { Usuario } from '../entity/auth/usuario.entity';
+import { User } from '../entity/auth/user.entity';
 import { PassService } from './PassService';
 
 export class CredentialsService {
   async validate(
     email: string,
     password: string
-  ): Promise<[boolean, string | Usuario]> {
+  ): Promise<[boolean, string | User]> {
     email = email.trim().toLowerCase();
     const u = await dataSource
-      .getRepository(Usuario)
+      .getRepository(User)
       .findOne({ where: { email } });
 
-    if (u === null) return [false, 'Usuario no existe'];
+    if (u === null) return [false, 'User no existe'];
 
     const service = new PassService();
     const isOk = await service.comparePassword(password.trim(), u.password);

@@ -1,18 +1,18 @@
 import { Button, Modal, Table, Typography } from 'antd';
 import styles from './users-list.module.css';
-import { Usuario } from '@starter-ws/db';
+import { User } from '@starter-ws/db';
 import { useState } from 'react';
 import { UserDetail } from '../user-detail/user-detail';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 /* eslint-disable-next-line */
-export interface usuariosListProps {
-  usuarios: Usuario[];
+export interface usersListProps {
+  users: User[];
 }
 
-export function UsersList({ usuarios }: usuariosListProps) {
-  const [usuario, setUsuario] = useState<Usuario>();
+export function UsersList({ users }: usersListProps) {
+  const [user, setUser] = useState<User>();
 
   const columns = [
     {
@@ -21,50 +21,50 @@ export function UsersList({ usuarios }: usuariosListProps) {
       render: (id: string) => (
         <Button
           type="link"
-          onClick={() => setUsuario(usuarios.find((u) => u.id === id))}
+          onClick={() => setUser(users.find((u) => u.id === id))}
         >
           {id}
         </Button>
       ),
-      sorter: (a: Usuario, b: Usuario) => a.id.localeCompare(b.id),
+      sorter: (a: User, b: User) => a.id.localeCompare(b.id),
     },
     {
-      title: 'nombre',
-      dataIndex: 'nombre',
-      sorter: (a: Usuario, b: Usuario) => a.nombre.localeCompare(b.nombre),
+      title: 'name',
+      dataIndex: 'name',
+      sorter: (a: User, b: User) => a.name.localeCompare(b.name),
     },
     {
       title: 'email',
       dataIndex: 'email',
-      sorter: (a: Usuario, b: Usuario) => a.email.localeCompare(b.email),
+      sorter: (a: User, b: User) => a.email.localeCompare(b.email),
     },
-    { title: 'esAdmin', dataIndex: 'esAdmin', render: (esAdmin: boolean) => esAdmin ? <CheckOutlined /> : <CloseOutlined /> },
+    { title: 'isAdmin', dataIndex: 'isAdmin', render: (isAdmin: boolean) => isAdmin ? <CheckOutlined /> : <CloseOutlined /> },
   ];
 
   const handleOk = () => {
-    setUsuario(undefined);
+    setUser(undefined);
   };
 
   const handleCancel = () => {
-    setUsuario(undefined);
+    setUser(undefined);
   };
 
   return (
     <div className={styles['container']}>
-      <Title level={3}>Usuarios</Title>
-      {usuario && (
+      <Title level={3}>Users</Title>
+      {user && (
         <Modal
-          title={usuario.nombre}
-          open={!!usuario}
+          title={user.name}
+          open={!!user}
           onOk={handleOk}
           onCancel={handleCancel}
           centered
           width={800}
         >
-          <UserDetail usuario={usuario} />
+          <UserDetail user={user} />
         </Modal>
       )}
-      <Table dataSource={usuarios} columns={columns} rowKey={() => 'id'} />
+      <Table dataSource={users} columns={columns} rowKey={() => 'id'} />
     </div>
   );
 }

@@ -24,7 +24,7 @@ const { Header, Sider, Content } = Layout;
 
 enum Modo {
   HOME = 'Home',
-  USERS = 'Usuarios',
+  USERS = 'Users',
   ABOUT = 'Acerca de',
 }
 
@@ -60,7 +60,7 @@ const DoApp = () => {
               {
                 key: Modo.USERS,
                 icon: <UserOutlined />,
-                label: <CustomLink to="/usuarios">Usuarios</CustomLink>,
+                label: <CustomLink to="/users">Users</CustomLink>,
               },
               {
                 key: Modo.ABOUT,
@@ -95,7 +95,7 @@ const DoApp = () => {
             <Routes>
               <Route index element={<Home />} />
               <Route path="about" element={<About />} />
-              <Route path="usuarios">
+              <Route path="users">
                 <Route path="" element={<UsersContainer />} />
                 <Route path=":id" element={<UserDetailFromRouter />} />
               </Route>
@@ -113,5 +113,5 @@ function Home() {
   return <div>Home</div>;
 }
 function About() {
-  return <div>Acá va la descripción de tu proyecto.</div>;
+  return <div>This is the about section.</div>;
 }

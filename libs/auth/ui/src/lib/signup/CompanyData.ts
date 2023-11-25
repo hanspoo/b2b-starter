@@ -1,5 +1,5 @@
 export type CompanyData = {
-  empresa: string;
+  organization: string;
   identLegal: string;
   pais: string;
 };

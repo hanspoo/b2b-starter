@@ -9,15 +9,15 @@ type RecoverComponentsArgs = {
 };
 type Pais = {
   sigla: string;
-  nombre: string;
+  name: string;
 };
 
 const paises: Array<Pais> = [
-  { nombre: 'Chile', sigla: 'cl' },
-  { nombre: 'Perú', sigla: 'pe' },
-  { nombre: 'Colombia', sigla: 'co' },
-  { nombre: 'Brasil', sigla: 'br' },
-  { nombre: 'Argentina', sigla: 'ar' },
+  { name: 'Chile', sigla: 'cl' },
+  { name: 'Perú', sigla: 'pe' },
+  { name: 'Colombia', sigla: 'co' },
+  { name: 'Brasil', sigla: 'br' },
+  { name: 'Argentina', sigla: 'ar' },
 ];
 export function SignupReadCompanyData({ cancel, next }: RecoverComponentsArgs) {
   const [loading, setLoading] = useState(false);
@@ -42,11 +42,11 @@ export function SignupReadCompanyData({ cancel, next }: RecoverComponentsArgs) {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
-      <p>Complete los datos de su empresa.</p>
+      <p>Complete los datos de su organization.</p>
 
       <Form.Item
-        label="Nombre empresa"
-        name="empresa"
+        label="Nombre organization"
+        name="organization"
         rules={[{ required: true, message: 'Requerido', min: 1 }]}
       >
         <Input autoFocus placeholder="" />
@@ -61,8 +61,8 @@ export function SignupReadCompanyData({ cancel, next }: RecoverComponentsArgs) {
       </Form.Item>
       <Form.Item name="pais" label="País" rules={[{ required: true }]}>
         <Select>
-          {paises.map(({ sigla, nombre }) => (
-            <Select.Option value={sigla}>{nombre}</Select.Option>
+          {paises.map(({ sigla, name }) => (
+            <Select.Option value={sigla}>{name}</Select.Option>
           ))}
         </Select>
       </Form.Item>

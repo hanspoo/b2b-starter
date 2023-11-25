@@ -1,21 +1,21 @@
 // dado un código de seguridad, genera un token asociado al email
 // para realizar la operación.
 
-import { inicializarSistema } from "../../lib/inicializarSistema";
+import { inicializarSistema } from '../../lib/initSystem';
 import {
   ValidarSolicitudAutenticarEmail,
   ValidaSolicitudAutenticarEmailResponse,
-} from "../../lib/auth/ValidarSolicitudAutenticarEmail";
-import { randomCseg, randomEmail } from "@starter-ws/shared";
-import { creaSolicitudAutenticar } from "./auth-test-utils";
-import { MotivoPermiso } from "../../lib/entity/auth/permiso-usar-email.entity";
+} from '../../lib/auth/ValidarSolicitudAutenticarEmail';
+import { randomCseg, randomEmail } from '@starter-ws/shared';
+import { creaSolicitudAutenticar } from './auth-test-utils';
+import { MotivoPermiso } from '../../lib/entity/auth/grant-use-email.entity';
 
 beforeAll(async () => {
   await inicializarSistema();
 });
 
-describe("valida código de seguridad", () => {
-  it("email y código inválido envia error", async () => {
+describe('valida código de seguridad', () => {
+  it('email y código inválido envia error', async () => {
     const s = new ValidarSolicitudAutenticarEmail();
     const resultado: ValidaSolicitudAutenticarEmailResponse = await s.execute(
       randomEmail(),
@@ -26,7 +26,7 @@ describe("valida código de seguridad", () => {
     expect(resultado.success).toBe(false);
     expect(resultado.permiso).toBeFalsy();
   });
-  it("email y código válido, envia token", async () => {
+  it('email y código válido, envia token', async () => {
     const sol = await creaSolicitudAutenticar();
     const servicio = new ValidarSolicitudAutenticarEmail();
     const resultado: ValidaSolicitudAutenticarEmailResponse =
@@ -40,7 +40,7 @@ describe("valida código de seguridad", () => {
     expect(resultado.permiso).toBeTruthy();
     expect(resultado.permiso?.token).toBeTruthy();
   });
-  it("email ok y código error, da error", async () => {
+  it('email ok y código error, da error', async () => {
     const sol = await creaSolicitudAutenticar();
     const servicio = new ValidarSolicitudAutenticarEmail();
     const resultado: ValidaSolicitudAutenticarEmailResponse =

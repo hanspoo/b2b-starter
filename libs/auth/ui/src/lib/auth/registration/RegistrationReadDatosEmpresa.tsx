@@ -13,7 +13,7 @@ type RecoverComponentsArgs = {
   email: string;
 };
 
-export function RegistrationReadDatosEmpresa({
+export function RegistrationReadDatosOrganization({
   email,
   token,
   cancel,
@@ -62,11 +62,11 @@ export function RegistrationReadDatosEmpresa({
         <p>{error}</p>
       ) : (
         <>
-          <p>Complete los datos de su empresa.</p>
+          <p>Complete los datos de su organization.</p>
 
           <Form.Item
-            label="Nombre empresa"
-            name="nombreEmpresa"
+            label="Nombre organization"
+            name="nameOrganization"
             rules={[{ required: true, message: 'Requerido', min: 1 }]}
           >
             <Input placeholder="" />
@@ -74,7 +74,7 @@ export function RegistrationReadDatosEmpresa({
 
           <Form.Item
             label="RUT o identificador legal"
-            name="rutEmpresa"
+            name="rutOrganization"
             rules={[{ required: true, message: 'Requerido', min: 6 }]}
           >
             <Input placeholder="" />

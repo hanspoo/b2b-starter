@@ -1,11 +1,11 @@
-import { cleanupEmail } from "@starter-ws/mail-utils";
-import { PassService } from "./PassService";
-import { dataSource } from "../data-source";
-import { PermisoUsarEmail } from "../entity/auth/permiso-usar-email.entity";
-import { Usuario } from "../entity/auth/usuario.entity";
-import { logger } from "../utils/logger";
+import { cleanupEmail } from '@starter-ws/mail-utils';
+import { PassService } from './PassService';
+import { dataSource } from '../data-source';
+import { PermisoUsarEmail } from '../entity/auth/grant-use-email.entity';
+import { User } from '../entity/auth/user.entity';
+import { logger } from '../utils/logger';
 
-export const repoUsr = dataSource.getRepository(Usuario);
+export const repoUsr = dataSource.getRepository(User);
 export const repoPermisos = dataSource.getRepository(PermisoUsarEmail);
 
 export type ExecuteChangePassResponse = {
@@ -20,13 +20,13 @@ export class ExecuteChangePassService {
     password: string
   ): Promise<ExecuteChangePassResponse> {
     if (!(token && email && password))
-      return { success: false, msg: "Faltan datos" };
+      return { success: false, msg: 'Faltan datos' };
 
-    if (!email) return { success: false, msg: "Debe venir el email" };
+    if (!email) return { success: false, msg: 'Debe venir el email' };
     email = cleanupEmail(email);
 
     const user = await repoUsr.findOne({ where: { email } });
-    if (!user) return { success: false, msg: "Usuario no existe" };
+    if (!user) return { success: false, msg: 'User no existe' };
 
     const permiso = await repoPermisos.findOne({
       where: { token, email, vigente: true },
@@ -38,7 +38,7 @@ export class ExecuteChangePassService {
       permiso.vigente = false;
       permiso.fechaUso = new Date().getTime();
       await repoPermisos.save(permiso);
-      return { success: true, msg: "Ok" };
-    } else return { success: false, msg: "No hay permiso para la operación" };
+      return { success: true, msg: 'Ok' };
+    } else return { success: false, msg: 'No hay permiso para la operación' };
   }
 }

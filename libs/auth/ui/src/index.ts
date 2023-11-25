@@ -1,11 +1,11 @@
 export { CustomLink } from './lib/CustomLink';
 
-export { UserDetailFromRouter } from './lib/usuarios/UserDetailFromRouter';
+export { UserDetailFromRouter } from './lib/users/UserDetailFromRouter';
 
-export { UsersContainer } from './lib/usuarios/users-container/users-container';
+export { UsersContainer } from './lib/users/users-container/users-container';
 
-export * from './lib/usuarios/user-detail/user-detail';
-export * from './lib/usuarios/users-list/users-list';
+export * from './lib/users/user-detail/user-detail';
+export * from './lib/users/users-list/users-list';
 export * from './lib/signup/signup-coordinator/signup-coordinator';
 export * from './lib/customAxios';
 export * from './lib/login-section/login-section';

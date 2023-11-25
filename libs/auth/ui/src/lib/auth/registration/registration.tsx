@@ -3,7 +3,7 @@ import { Typography } from 'antd';
 import styles from '../../auth-form.module.css';
 import { RegistrationReadMail } from './RegistrationReadMail';
 import { RegistrationReadCode } from './RegistrationReadCode';
-import { RegistrationReadDatosEmpresa } from './RegistrationReadDatosEmpresa';
+import { RegistrationReadDatosOrganization } from './RegistrationReadDatosOrganization';
 import { RegistrationSuccessLanding } from './RegistrationSuccessLanding';
 
 const { Title } = Typography;
@@ -19,7 +19,7 @@ export const Registration: React.FC<{ cancel: () => void }> = ({ cancel }) => {
     <div className={styles['container']}>
       <div className={styles['login-form']}>
         <Title level={3} style={{ marginBottom: '1em', display: 'block' }}>
-          Registrar Empresa
+          Registrar Organization
         </Title>
         <DoRegistration cancel={cancel} />
       </div>
@@ -39,7 +39,7 @@ export const DoRegistration: React.FC<{ cancel: () => void }> = ({
     if (!token) return <p>Error interno, no está definido el token (2)</p>;
 
     return (
-      <RegistrationReadDatosEmpresa
+      <RegistrationReadDatosOrganization
         token={token}
         email={email}
         cancel={cancel}

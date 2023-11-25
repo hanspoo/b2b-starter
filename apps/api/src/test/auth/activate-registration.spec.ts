@@ -9,7 +9,7 @@ const bodyReq: ActivationRequest = {
   cseg: 123456,
   email: 'info@starter.com',
 };
-describe('servicio activacion registro usuarios', () => {
+describe('servicio activacion registro users', () => {
   it('existe el endpoint', async () => {
     const res = await request(app).post('/api/auth/activate').send(bodyReq);
     expect(res.statusCode).toEqual(200);

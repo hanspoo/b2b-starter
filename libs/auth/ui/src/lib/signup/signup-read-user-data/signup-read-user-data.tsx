@@ -34,7 +34,7 @@ export function SignupReadUserData({ cancel, next }: RecoverComponentsArgs) {
 
       <Form.Item
         label="Nombre"
-        name="nombre"
+        name="name"
         rules={[{ required: true, message: 'Requerido', min: 1 }]}
       >
         <Input placeholder="Juan Pérez" autoFocus />

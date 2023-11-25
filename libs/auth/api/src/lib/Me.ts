@@ -1,5 +1,5 @@
 export type Me = {
-  nombre: string;
-  empresa: string;
+  name: string;
+  organization: string;
   email: string;
 };

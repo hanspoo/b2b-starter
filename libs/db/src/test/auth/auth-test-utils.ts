@@ -1,19 +1,19 @@
-import { randomEmail, randomCseg } from "@starter-ws/shared";
-import { randomBytes } from "crypto";
-import { dataSource } from "../../lib/data-source";
+import { randomEmail, randomCseg } from '@starter-ws/shared';
+import { randomBytes } from 'crypto';
+import { dataSource } from '../../lib/data-source';
 import {
   MotivoPermiso,
   PermisoUsarEmail,
-} from "../../lib/entity/auth/permiso-usar-email.entity";
-import { SolicitudAutenticarEmail } from "../../lib/entity/auth/solicitud-autenticar-email.entity";
-import { SolicitudRegistro } from "../../lib/entity/auth/solicitud-registro.entity";
+} from '../../lib/entity/auth/grant-use-email.entity';
+import { SolicitudAutenticarEmail } from '../../lib/entity/auth/email-authentication-request.entity';
+import { SolicitudRegistro } from '../../lib/entity/auth/registration-request.entity';
 
-export const fakeToken = () => randomBytes(6).toString("hex");
+export const fakeToken = () => randomBytes(6).toString('hex');
 
 export async function crearPermisoFake(
   email?: string
 ): Promise<[string, string]> {
-  const token = randomBytes(6).toString("hex");
+  const token = randomBytes(6).toString('hex');
   email = email || randomEmail();
   const repo = dataSource.getRepository(PermisoUsarEmail);
   await repo.save(
@@ -23,11 +23,11 @@ export async function crearPermisoFake(
 }
 
 export const s: Partial<SolicitudRegistro> = {
-  identLegal: "volcan",
-  empresa: "volcan",
-  nombre: "volcan",
-  email: "volcan",
-  password: "volcan",
+  identLegal: 'volcan',
+  organization: 'volcan',
+  name: 'volcan',
+  email: 'volcan',
+  password: 'volcan',
   cseg: 123456,
 };
 

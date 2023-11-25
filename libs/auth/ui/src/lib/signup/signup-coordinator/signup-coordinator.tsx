@@ -30,7 +30,7 @@ export const SignupCoordinator: React.FC<{ cancel: () => void }> = ({
   return (
     <div className={styles['container']}>
       <div className={styles['login-form']}>
-        <Title level={3}>Registrar Empresa</Title>
+        <Title level={3}>Registrar Organization</Title>
         <div style={{ marginBottom: '1em', width: '100%', height: '2px' }}>
           <div
             style={{
@@ -89,7 +89,7 @@ function DoRegistration({ cancel, view, setView }: DoRegProps) {
   }
 
   if (view === View.USUARIO) {
-    if (!companyData) return <p>Error interno, no está definida la empresa</p>;
+    if (!companyData) return <p>Error interno, no está definida la organization</p>;
     return (
       <SignupReadUserData
         cancel={cancel}
@@ -105,8 +105,8 @@ function DoRegistration({ cancel, view, setView }: DoRegProps) {
     if (!token) return <p>Error interno, no está definido el token</p>;
     if (!email) return <p>Error interno, no está definido el email</p>;
     if (!userData)
-      return <p>Error interno, no están definidos los datos del usuario</p>;
-    if (!companyData) return <p>Error interno, no está definida la empresa</p>;
+      return <p>Error interno, no están definidos los datos del user</p>;
+    if (!companyData) return <p>Error interno, no está definida la organization</p>;
 
     return (
       <SignupReadPassword
@@ -126,7 +126,7 @@ function DoRegistration({ cancel, view, setView }: DoRegProps) {
     return (
       <>
         <p>
-          Felicitaciones {userData?.nombre}, has completado el proceso de
+          Felicitaciones {userData?.name}, has completado el proceso de
           registro:
         </p>
         <Button block type="primary" onClick={cancel}>

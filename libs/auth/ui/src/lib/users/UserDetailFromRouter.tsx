@@ -7,20 +7,20 @@ import { UserDetail } from './user-detail/user-detail';
 import { crumbs } from './crumbs';
 
 export function UserDetailFromRouter() {
-  const { usuarios } = useSelector((state: RootState) => state.usersState);
+  const { users } = useSelector((state: RootState) => state.usersState);
   const { id } = useParams();
 
-  const usuario = usuarios?.find((u) => u.id === id);
+  const user = users?.find((u) => u.id === id);
   return (
     <div>
       <Breadcrumb
-        items={[...crumbs, { title: usuario?.nombre.toLocaleLowerCase() }]}
+        items={[...crumbs, { title: user?.name.toLocaleLowerCase() }]}
       />
 
-      {usuario ? (
-        <UserDetail usuario={usuario} />
+      {user ? (
+        <UserDetail user={user} />
       ) : (
-        <p>Error al recuperar usuario {id} </p>
+        <p>Error al recuperar user {id} </p>
       )}
     </div>
   );

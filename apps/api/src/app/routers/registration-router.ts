@@ -1,6 +1,6 @@
 import { SignupRequest, RequestValidaCodSeguridad } from '@starter-ws/auth/api';
 import {
-  CrearUsuarioService,
+  CrearUserService,
   dataSource,
   MotivoPermiso,
   PermisoUsarEmail,
@@ -15,7 +15,7 @@ import { Request, Response } from 'express';
 const registration = express.Router();
 
 /**
- * El usuario tiene en el front todos los datos,
+ * El user tiene en el front todos los datos,
  * nos manda, ha obtenido un token para
  * poder registrar ese email. Revisamos nuevamente el token.
  */
@@ -23,7 +23,7 @@ const registration = express.Router();
 registration.post(
   '/create-company',
   async function (req: Request<null, null, SignupRequest>, res: Response) {
-    const { email, token, empresa, nombre, password, identLegal } = req.body;
+    const { email, token, organization, name, password, identLegal } = req.body;
 
     const repoPermiso = dataSource.getRepository(PermisoUsarEmail);
     const permiso = await repoPermiso.findOne({
@@ -44,16 +44,16 @@ registration.post(
     const sol: SolicitudRegistro = await repoSol.save(
       repoSol.create({
         email,
-        empresa,
+        organization,
         identLegal,
-        nombre,
+        name,
         password,
         cseg: randomInt(1000000000),
       })
     );
     try {
-      const e = await new CrearUsuarioService().crearDesdeSolicitud(sol);
-      console.log(`Se ha creado la empresa ${e.nombre}`);
+      const e = await new CrearUserService().crearDesdeSolicitud(sol);
+      console.log(`Se ha creado la organization ${e.name}`);
 
       res.sendStatus(200);
     } catch (error) {

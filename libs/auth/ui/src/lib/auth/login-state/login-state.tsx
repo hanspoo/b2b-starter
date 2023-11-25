@@ -39,7 +39,7 @@ export function LoginState(props: LoginStateProps) {
   }, []);
 
   const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
-  if (!loggedIn) return <p>Desconectado</p>;
+  if (!loggedIn) return <p>Desconected</p>;
 
   const onLogout = () => {
     dispatch(logout());
@@ -55,7 +55,7 @@ export function LoginState(props: LoginStateProps) {
         </Button>
       ) : (
         <span>
-          {me?.nombre} en {me?.empresa}
+          {me?.name} en {me?.organization}
           <br />
           <Button
             style={{ padding: 0 }}
@@ -63,7 +63,7 @@ export function LoginState(props: LoginStateProps) {
             type="link"
             onClick={onLogout}
           >
-            <small>Cerrar sesión</small>
+            <small>Close session</small>
           </Button>
         </span>
       )}

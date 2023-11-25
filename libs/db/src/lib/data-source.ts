@@ -1,13 +1,13 @@
 import * as crypto from 'node:crypto';
 import { DataSource } from 'typeorm';
-import { Archivo } from './entity/archivo.entity';
-import { Empresa } from './entity/auth/empresa.entity';
+import { Archivo } from './entity/file.entity';
+import { Organization } from './entity/auth/organization.entity';
 import { Token } from './entity/auth/token.entity';
-import { Usuario } from './entity/auth/usuario.entity';
+import { User } from './entity/auth/user.entity';
 
-import { SolicitudRegistro } from './entity/auth/solicitud-registro.entity';
-import { SolicitudAutenticarEmail } from './entity/auth/solicitud-autenticar-email.entity';
-import { PermisoUsarEmail } from './entity/auth/permiso-usar-email.entity';
+import { SolicitudRegistro } from './entity/auth/registration-request.entity';
+import { SolicitudAutenticarEmail } from './entity/auth/email-authentication-request.entity';
+import { PermisoUsarEmail } from './entity/auth/grant-use-email.entity';
 const LOGGING = !!process.env['DEBUG_DB'] || false;
 const testEnv = 'test';
 
@@ -27,8 +27,8 @@ const dataSource = new DataSource({
   ...dbArgs,
   entities: [
     Archivo,
-    Empresa,
-    Usuario,
+    Organization,
+    User,
     Token,
     SolicitudRegistro,
     SolicitudAutenticarEmail,

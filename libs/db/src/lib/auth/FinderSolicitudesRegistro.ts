@@ -1,5 +1,5 @@
 import { dataSource } from '../data-source';
-import { SolicitudRegistro } from '../entity/auth/solicitud-registro.entity';
+import { SolicitudRegistro } from '../entity/auth/registration-request.entity';
 import { ActivationServiceResponse } from './ActivationServiceResponse';
 
 const repo = dataSource.getRepository(SolicitudRegistro);

@@ -1,9 +1,9 @@
 # b2b-starter
 
-Prototipo operativo de proyecto multi empresas con bases de datos, ideal para un b2b. Moderno stack tecnológico.
-Por simplicidad no hemos usado frameworks más elaborados como nextjs ni nestjs, sólo React y Express.
+Working skeleton of multi ornanizacion project with a relational database, ideal for a b2b. Modern technological stack.
+For simplicity we have not used more elaborate frameworks such as nextjs or nestjs, only React and Express.
 
-Hemos preparado un video para ayudarte a instalar:
+We have prepared a video to help you install:
 
 https://www.youtube.com/watch?v=H3FVW_YogM8
 
@@ -20,38 +20,38 @@ https://www.youtube.com/watch?v=H3FVW_YogM8
 - jest
 - storybook
 
-## Apps básicas
+## Basic apps
 
-- Login
-- Registro de empresas y usuarios
-- Recuperación de contraseñas
+- User registration token based
+- User explorer
+- Password recovery with email
 
-Nota: Sin links en los correos
+Note: No links in emails
 
-## Porque ?
+## Because ?
 
-Este proyecto nace en el desarrollo de un sistema de logística que evolucionó en multiempresas, multi usuarios, del tipo que se utiliza para desarrollar software como servicio.
+This project was born in the development of a logistics system that evolved into multi-company, multi-user, the type used to develop software as a service.
 
-Incorporamos un buen proceso de login, registro y recuperación de contraseñas con buenas prácticas como por ejemplo no mandar enlaces en los correos y usar tokens y no cookies. Por lo tanto nos parece un buen aporte a la comunidad el disponer de un proyecto prototipico con el cual comenzar un desarrollo.
+We incorporate a good login, registration and password recovery process with good practices such as not sending links in emails and using tokens and not cookies. Therefore, we think it is a good contribution to the community to have a prototype project with which to begin development.
 
-Puede que queden algunas cosas vestigiales del sistema original de pallets por ahí danto vueltas Les pedimos disculpas si es el caso nos avisan para irlas removiendo o nos mandan un MR.
+There may be some vestigial things left from the original pallet system hanging around. We apologize. If this is the case, let us know so we can remove them or send us an MR.
 
-Al app principal React, y la base de datos llevan el nombre starter, en el sentido de que les va ayudar hacer muy rápido sus proyectos.
+The main React app and the database are called starter, in the sense that it will help them make their projects very quickly.
 
-Finalmente: Disculpas por el spanglish, estamos realizando un refactor global para dejar todo en español.
+Finally: Apologies for the Spanglish, we are doing a global refactor to leave everything in Spanish.
 
-## Requisitos
+## Requirements
 
-Este es un proyecto node, por lo tanto lo primero es instalar node, hay varias
-formas de hacerlo; recomendamos usar nvm, y por el momento usar 18.
+This is a node project, therefore the first thing is to install node, there are several
+ways to do it; We recommend using nvm, and for the moment use 18.
 
-node
+do not give
 
 ```
 https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04
 ```
 
-o si usamos nvm:
+or if we use nvm:
 
 ```
 nvm install 18
@@ -66,14 +66,14 @@ sudo apt install postgresql
 
 nx
 
-Simplifica bastante tener instalado globalmente nx, puede que para el momento en que estas instalando, se instale 16 por defecto, por el
-momento es necesario usar latest para instalar nx 16.
+It makes it quite simple to have nx installed globally, it may be that by the time you are installing, 16 is installed by default, so
+At the moment it is necessary to use latest to install nx 16.
 
 ```
 npm i -g nx@latest
 ```
 
-## Desarrollo
+## Development
 
 ```
 git clone https://github.com/hanspoo/b2b-starter
@@ -82,7 +82,7 @@ npm install
 npm run test
 ```
 
-Crear archivo .env.local en raiz del proyecto:
+Create .env.local file at the root of the project:
 
 ```
 VITE_SERVER_URL=http://localhost:3333
@@ -99,48 +99,48 @@ DB_USER=b2b
 DB_PASS=123456
 ```
 
-Actualmente para poder usar gmail se debe primero habilitar la 
-autenticación de dos pasos, y luego crear una aplicación en sección:
+Currently, in order to use Gmail, you must first enable the
+two-step authentication, and then create an app in section:
 
-Contraseñas de aplicaciones
+App passwords
 
-## Base de datos
+## Database
 
-El sistema utilizará las variables de entorno DB\* para la conexión a la base de datos.
-Sólo en test usamos sqlite, en los otros ambientes usamos postgresql. Puede crear de cualquier
-forma la base de datos, tenemos este script para poder crear rápidamente la base de datos y credenciales:
+The system will use the DB\* environment variables to connect to the database.
+Only in test we use sqlite, in the other environments we use postgresql. You can create any
+forms the database, we have this script to quickly create the database and credentials:
 
 ```
 sudo su postgres -s bin/create-db-as-postgres.sh b2b
 ```
 
-Esto va a crear una base e datos llamada b2b, con un usario llamado b2b con
-contraseña 123456.
+This will create a database called b2b, with a user called b2b with
+password 123456.
 
-Luego configurar con estos datos el archivo .env.
+Then configure the .env file with this data.
 
-## Ejecutar backend
+## Run backend
 
 ```
 nx serve api
 ```
 
-## Ejecutar front en otro terminal
+## Run front in another terminal
 
 ```
 nx serve front
 ```
 
-Ir a al navegador:
+Go to browser:
 http://localhost:4200
 
-Ahora se puede logear con el:
-usuario:
+Now you can log in with:
+user:
 admin@starter.com
 password:
 123456
 
-## Producción
+## Production
 
 ```
 npm run build
@@ -148,15 +148,14 @@ cd dist/apps/api
 node main.js
 ```
 
-## Custom database
+##Custom database
 
-Crear archivo .env.local en la raíz del proyecto con las variables, por ejemplo:
+Create .env.local file in the root of the project with the variables, for example:
 
 ```
-DB_NAME=gargola
-DB_USER=gargola
-DB_PASS=depiedra
+DB_NAME=gargoyle
+DB_USER=gargoyle
+DB_PASS=stone
 ```
 
-El script bin/pg-create.sh hace esto mismo.
-
+The bin/pg-create.sh script does this same thing.

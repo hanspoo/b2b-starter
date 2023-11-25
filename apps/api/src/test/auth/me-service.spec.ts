@@ -19,16 +19,16 @@ describe('servicio me', () => {
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);
   });
-  it('debe entregar datos de usuario cuando hay token', async () => {
+  it('debe entregar datos de user cuando hay token', async () => {
     const token = await logear();
     const response = await request(app)
       .get('/api/me')
       .set('Authorization', `Bearer ${token}`);
 
     expect(response.body).toEqual({
-      nombre: 'Admin',
+      name: 'Admin',
       email: 'admin@starter.com',
-      empresa: 'starter',
+      organization: 'starter',
     });
   });
 });

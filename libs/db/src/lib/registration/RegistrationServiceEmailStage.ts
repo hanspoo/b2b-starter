@@ -1,9 +1,9 @@
-import { cleanupEmail, isValidEmail, mailer } from "@starter-ws/mail-utils";
-import { genCodSeguridad } from "@starter-ws/shared";
-import { dataSource } from "../data-source";
-import { SolicitudAutenticarEmail } from "../entity/auth/solicitud-autenticar-email.entity";
-import { Usuario } from "../entity/auth/usuario.entity";
-import { logger } from "../utils/logger";
+import { cleanupEmail, isValidEmail, mailer } from '@starter-ws/mail-utils';
+import { genCodSeguridad } from '@starter-ws/shared';
+import { dataSource } from '../data-source';
+import { SolicitudAutenticarEmail } from '../entity/auth/email-authentication-request.entity';
+import { User } from '../entity/auth/user.entity';
+import { logger } from '../utils/logger';
 
 export type RegistrationServiceEmailStageResult = {
   success: boolean;
@@ -17,17 +17,17 @@ export class RegistrationEmailStageService {
     if (!isValidEmail(e)) {
       return {
         success: false,
-        msg: "REG002: Email inválido",
+        msg: 'REG002: Email inválido',
       };
     }
     const u = await dataSource
-      .getRepository(Usuario)
+      .getRepository(User)
       .findOne({ where: { email: e } });
 
     if (u) {
       return {
         success: false,
-        msg: "REG001: El usuario ya está registrado en el sistema ",
+        msg: 'REG001: El user ya está registrado en el sistema ',
       };
     }
     logger.debug(`Inicio: Salvando solicitud ${this.email}`);
@@ -41,7 +41,7 @@ export class RegistrationEmailStageService {
 
     const res: RegistrationServiceEmailStageResult = {
       success: true,
-      msg: "",
+      msg: '',
     };
 
     return Promise.resolve(res);
@@ -53,7 +53,7 @@ export class RegistrationEmailStageService {
     const response = transporter.sendMail({
       from: '"Hans Poo" <hanscpoo@welinux.cl>', // sender address
       to: this.email,
-      subject: "Registro en starter, validando email",
+      subject: 'Registro en starter, validando email',
       html: `
         <p>Hola,</p>
 

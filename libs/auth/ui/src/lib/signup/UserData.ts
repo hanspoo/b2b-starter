@@ -1,4 +1,4 @@
 export type UserData = {
-  nombre: string;
+  name: string;
   celular: string;
 };

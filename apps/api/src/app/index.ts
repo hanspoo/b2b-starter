@@ -3,10 +3,10 @@ import cors from 'cors';
 import { Message } from '@starter-ws/auth/api';
 import { auth } from './routers/auth';
 import { me } from './routers/me';
-import { archivos } from './routers/archivos';
+import { archivos } from './routers/files';
 import { TokenService } from '@starter-ws/db';
 import { registration } from './routers/registration-router';
-import { usuarios } from './routers/usuarios';
+import { users } from './routers/users';
 
 type ReqWithSession = Request<
   unknown,
@@ -49,8 +49,8 @@ const authMiddleware = async function (
       if (!t) {
         return res.status(401).send(`Token ${token} no encontrado`);
       }
-      req['user'] = t.usuario;
-      req['empresa'] = t.usuario.empresa;
+      req['user'] = t.user;
+      req['organization'] = t.user.organization;
 
       return next();
     }
@@ -67,7 +67,7 @@ app.get('/api', (req, res) => {
 });
 
 app.use('/api/archivos', archivos);
-app.use('/api/usuarios', authMiddleware, usuarios);
+app.use('/api/users', authMiddleware, users);
 app.use('/api/auth', auth);
 app.use('/api/registration', registration);
 app.use('/api/me', authMiddleware, me);

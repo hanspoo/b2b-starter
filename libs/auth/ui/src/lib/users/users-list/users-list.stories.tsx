@@ -7,22 +7,22 @@ const Story: Meta<typeof UsersList> = {
 };
 export default Story;
 
-const usuarios = [
+const users = [
   {
     "id": 1,
-    "nombre": "Admin",
+    "name": "Admin",
     "email": "admin@starter.com",
-    "esAdmin": false
+    "isAdmin": false
   },
   {
     "id": 2,
-    "nombre": "Hans Poo",
+    "name": "Hans Poo",
     "email": "hanspoo@gmail.com",
-    "esAdmin": true
+    "isAdmin": true
   }
 ]
 
 
 export const Primary = {
-  args: { usuarios },
+  args: { users },
 };

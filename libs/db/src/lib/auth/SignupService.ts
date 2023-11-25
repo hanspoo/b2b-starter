@@ -1,22 +1,22 @@
 import * as nodemailer from 'nodemailer';
 import { randomInt } from 'node:crypto';
 import { dataSource } from '../data-source';
-import { SolicitudRegistro } from '../entity/auth/solicitud-registro.entity';
+import { SolicitudRegistro } from '../entity/auth/registration-request.entity';
 import { genCodSeguridad } from '@starter-ws/shared';
 import { mailer } from '@starter-ws/mail-utils';
 
 export type SignupArgs = {
   identLegal: string;
-  empresa: string;
-  nombre: string;
+  organization: string;
+  name: string;
   email: string;
   password: string;
 };
 
 export class SignupService {
   codigoSeguridad: number;
-  empresa: string;
-  nombre: string;
+  organization: string;
+  name: string;
   email: string;
   password: string;
   identLegal: string;
@@ -28,8 +28,8 @@ export class SignupService {
     const sol = await repo.save(
       repo.create({
         identLegal: this.identLegal,
-        empresa: this.empresa,
-        nombre: this.nombre,
+        organization: this.organization,
+        name: this.name,
         email: this.email,
         password: this.password,
         cseg: this.codigoSeguridad,
@@ -79,9 +79,9 @@ export class SignupService {
 
   async validate(): Promise<[boolean, Array<string>]> {
     const errors: Array<string> = [];
-    if (!/\w+/.test(this.empresa)) errors.push('Empresa inválida');
+    if (!/\w+/.test(this.organization)) errors.push('Organization inválida');
     if (!/\w+/.test(this.identLegal)) errors.push('Ident legal inválido');
-    if (!/\w+/.test(this.nombre)) errors.push('Nombre inválido');
+    if (!/\w+/.test(this.name)) errors.push('Nombre inválido');
     if (!/\w+/.test(this.email)) errors.push('Email inválido');
     if (!/\w+/.test(this.password)) errors.push('Contraseña inválida');
     if (errors.length > 0) return [false, errors];
@@ -89,8 +89,8 @@ export class SignupService {
     return [true, []];
   }
   constructor(params: SignupArgs) {
-    this.empresa = params.empresa;
-    this.nombre = params.nombre;
+    this.organization = params.organization;
+    this.name = params.name;
     this.email = params.email;
     this.password = params.password;
     this.identLegal = params.identLegal;

@@ -6,17 +6,17 @@ import {
   OneToMany,
   Unique,
 } from 'typeorm';
-import { Empresa } from './empresa.entity';
+import { Organization } from './organization.entity';
 import { Token } from './token.entity';
 
 @Entity()
 @Unique('email-unico', ['email']) //
-export class Usuario {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  nombre: string;
+  name: string;
 
   @Column()
   email: string;
@@ -24,17 +24,17 @@ export class Usuario {
   @Column()
   password: string;
 
-  @ManyToOne(() => Empresa, (e: Empresa) => e.usuarios)
-  empresa: Empresa;
+  @ManyToOne(() => Organization, (e: Organization) => e.users)
+  organization: Organization;
 
   @OneToMany(
     () => Token,
     (s: Token) => {
-      s.usuario;
+      s.user;
     }
   )
-  sesiones: Token[];
+  sessions: Token[];
 
   @Column({ type: 'boolean', default: false })
-  esAdmin: boolean;
+  isAdmin: boolean;
 }

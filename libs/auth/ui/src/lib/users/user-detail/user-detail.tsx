@@ -1,14 +1,13 @@
 import { Col, Descriptions } from 'antd';
-import { Usuario } from '@starter-ws/db';
-import { Link } from 'react-router-dom';
+import { User } from '@starter-ws/db';
 import { EditOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import EditarUsuario from '../editar-usuario/editar-usuario';
+import EditUser from '../edit-user/edit-user';
 
 const { Item } = Descriptions;
 
-type UsuarioDetailProps = {
-  usuario: Usuario;
+type UserDetailProps = {
+  user: User;
 };
 
 const box: React.CSSProperties = {
@@ -28,29 +27,29 @@ const container: React.CSSProperties = {
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
 };
-function UserDetail({ usuario }: UsuarioDetailProps) {
+function UserDetail({ user }: UserDetailProps) {
   const [editar, setEditar] = useState(false);
 
   return (
     <div style={container}>
       <Col style={{ margin: '1em' }}>
-        <div style={box}>{usuario.nombre.substring(0, 1).toUpperCase()}</div>
+        <div style={box}>{user.name.substring(0, 1).toUpperCase()}</div>
       </Col>
       <Col style={{ margin: '1em' }} span={16}>
         {editar ? (
-          <EditarUsuario usuario={usuario} cancelar={() => setEditar(false)} />
+          <EditUser user={user} cancelar={() => setEditar(false)} />
         ) : (
           <Descriptions column={1} layout="vertical">
-            <Item label="nombre">
-              {usuario.nombre}{' '}
+            <Item label="name">
+              {user.name}{' '}
               <EditOutlined
                 onClick={() => setEditar(true)}
                 style={{ color: 'brown', marginLeft: '1em' }}
               />
             </Item>
-            <Item label="email">{usuario.email}</Item>
-            <Item label="id">{usuario.id}</Item>
-            <Item label="esAdmin">{usuario.esAdmin ? 'Si' : 'No'}</Item>
+            <Item label="email">{user.email}</Item>
+            <Item label="id">{user.id}</Item>
+            <Item label="isAdmin">{user.isAdmin ? 'Yes' : 'No'}</Item>
           </Descriptions>
         )}
       </Col>

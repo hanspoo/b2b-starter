@@ -7,7 +7,7 @@ export class LoginService {
     const [connected, payloadResponse] =
       await new CredentialsService().validate(email, pass);
     if (connected && typeof payloadResponse !== 'string') {
-      const t = Token.fromUsuario(payloadResponse);
+      const t = Token.fromUser(payloadResponse);
       const token = await dataSource.getRepository(Token).save(t);
       return [true, token.id];
     } else {

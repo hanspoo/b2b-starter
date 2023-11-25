@@ -1,10 +1,10 @@
-import { randomBytes } from "crypto";
-import { dataSource } from "../data-source";
-import { SolicitudAutenticarEmail } from "../entity/auth/solicitud-autenticar-email.entity";
+import { randomBytes } from 'crypto';
+import { dataSource } from '../data-source';
+import { SolicitudAutenticarEmail } from '../entity/auth/email-authentication-request.entity';
 import {
   MotivoPermiso,
   PermisoUsarEmail,
-} from "../entity/auth/permiso-usar-email.entity";
+} from '../entity/auth/grant-use-email.entity';
 
 export type ValidaSolicitudAutenticarEmailResponse = {
   success: boolean;
@@ -34,14 +34,14 @@ export class ValidarSolicitudAutenticarEmail {
         })
       );
 
-      return { success: true, msg: "Ok", permiso };
+      return { success: true, msg: 'Ok', permiso };
     } else {
-      return { success: false, msg: "VS0001" };
+      return { success: false, msg: 'VS0001' };
     }
   }
 }
 function genRandomToken() {
-  return randomBytes(32).toString("base64");
+  return randomBytes(32).toString('base64');
 }
 function ahoraMenos5(): number {
   const d = new Date();
