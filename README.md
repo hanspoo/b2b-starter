@@ -38,33 +38,41 @@ There may be some vestigial things left from the original pallet system hanging 
 
 The main React app and the database are called starter, in the sense that it will help them make their projects very quickly.
 
-Finally: Apologies for the Spanglish, we are doing a global refactor to leave everything in Spanish.
+Finally: We have translated to English recently, so please forgive the spanglish somewhere. Please feed back on this or give us your merge request.
 
-## Requirements
+## Prerequisites
+
+### node
 
 This is a node project, therefore the first thing is to install node, there are several
 ways to do it; We recommend using nvm, and for the moment use 18.
 
-do not give
+These are instructions for ubuntu linux:
 
 ```
 https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04
 ```
 
-or if we use nvm:
+better with nvm:
+
+If no nvm installed:
+
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash`
+
+then
 
 ```
 nvm install 18
 nvm alias default 18
 ```
 
-postgresql
+### postgresql
 
 ```
 sudo apt install postgresql
 ```
 
-nx
+### nx
 
 It makes it quite simple to have nx installed globally, it may be that by the time you are installing, 16 is installed by default, so
 At the moment it is necessary to use latest to install nx 16.
@@ -75,12 +83,28 @@ npm i -g nx@latest
 
 ## Development
 
+### clone the project and run tests
+
 ```
 git clone https://github.com/hanspoo/b2b-starter
 cd b2b-starter/
 npm install
 npm run test
 ```
+
+### Database
+
+Dev and prod uses postgresql, dev uses sqlite.
+
+Create a database with this script:
+
+```
+sudo su postgres -s bin/create-db-as-postgres.sh b2b
+```
+
+This will create a database called b2b, with a user called b2b with password 123456.
+
+## .env
 
 Create .env.local file at the root of the project:
 
@@ -99,25 +123,10 @@ DB_USER=b2b
 DB_PASS=123456
 ```
 
-Currently, in order to use Gmail, you must first enable the
-two-step authentication, and then create an app in section:
+The email is used by the registration and password recovery system.
 
-App passwords
-
-## Database
-
-The system will use the DB\* environment variables to connect to the database.
-Only in test we use sqlite, in the other environments we use postgresql. You can create any
-forms the database, we have this script to quickly create the database and credentials:
-
-```
-sudo su postgres -s bin/create-db-as-postgres.sh b2b
-```
-
-This will create a database called b2b, with a user called b2b with
-password 123456.
-
-Then configure the .env file with this data.
+If you want to use Gmail, first enable two-step authentication, and then create
+an app in section "App passwords", then use the app password here.
 
 ## Run backend
 
@@ -135,6 +144,7 @@ Go to browser:
 http://localhost:4200
 
 Now you can log in with:
+
 user:
 admin@starter.com
 password:
@@ -147,15 +157,3 @@ npm run build
 cd dist/apps/api
 node main.js
 ```
-
-##Custom database
-
-Create .env.local file in the root of the project with the variables, for example:
-
-```
-DB_NAME=gargoyle
-DB_USER=gargoyle
-DB_PASS=stone
-```
-
-The bin/pg-create.sh script does this same thing.
