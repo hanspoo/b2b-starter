@@ -1,11 +1,9 @@
 # b2b-starter
 
-Working skeleton of a database based project with modern stack.
-
-Just react and express: for simplicity we have not used more elaborate frameworks such as nextjs or nestjs.
+Working skeleton of a database based project with modern stack, React + Express + Typeorm.
+For simplicity we have not used more elaborate frameworks such as nextjs or nestjs.
 
 We have prepared a video to help you to install:
-
 https://www.youtube.com/watch?v=H3FVW_YogM8
 
 ## Stack
@@ -29,25 +27,23 @@ https://www.youtube.com/watch?v=H3FVW_YogM8
 - User explorer
 - Password recovery with email
 
-Note: No links in emails
 
 ## Why ?
 
-Choose and assemble all the pieces to start your new rocket project is not an easy task, moreover today !!.
+Choose and assemble all the pieces to start a new system is not an easy task.
 
-This project is a working piece of the curated list ot technologies mentioned abobe. You just clone and begin
+This project is a working piece of the curated list ot technologies mentioned above. You just clone and begin
 to work with the features your client wants.
 
 For free you have registration, login and password recovery process. Good practices such as not sending links in emails and using tokens and not cookies.
 
-Finally: We have translated to English recently, so please forgive the spanglish somewhere. Please feed back on this or give us your merge request.
+Note: We have translated to English recently, so please forgive the spanglish somewhere. Please feed back on this or give us your merge request.
 
 ## Prerequisites
 
 ### node
 
-This is a node project, therefore the first thing is to install node, there are several
-ways to do it; We recommend using nvm, and for the moment use 18.
+This is a node project, therefore the first thing is to install node, there are several ways to do it; We recommend using nvm.
 
 These are instructions for ubuntu linux:
 
@@ -99,7 +95,7 @@ npm run test
 
 Dev and prod uses postgresql.
 
-Create a database with this script:
+In simple, create a database and put the credentials in the .env file, you can use this script:
 
 ```
 sudo su postgres -s bin/create-db-as-postgres.sh b2b
